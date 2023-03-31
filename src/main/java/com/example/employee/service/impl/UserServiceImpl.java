@@ -1,11 +1,11 @@
 package com.example.employee.service.impl;
 
 
+import com.example.employee.mapper.UserMapper;
 import com.example.employee.pojo.User;
 import com.example.employee.service.UserService;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @author lujiajun
@@ -13,6 +13,18 @@ import java.util.Date;
  */
 public class UserServiceImpl implements UserService {
 
+    private UserMapper userMapper;
+
+    /**
+     * 创建用户
+     * @param userName
+     * @param fullName
+     * @param userPassword
+     * @param userConfirmPassword
+     * @param userEmail
+     * @param userPhone
+     * @return
+     */
     @Override
     public User createUser(String userName,
                            String fullName,
@@ -30,8 +42,14 @@ public class UserServiceImpl implements UserService {
         user.setUserPhone(userPhone);
         user.setCreateTime(now);
         user.setUpdateTime(now);
-
-
-        return null;
+        userMapper.insert(user);
+        return user;
     }
+
+    @Override
+    public User queryUserByUserName(String userName) {
+        return userMapper.queryUserByUserNameAccurately(userName);
+    }
+
+
 }

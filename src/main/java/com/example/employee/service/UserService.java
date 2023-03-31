@@ -9,7 +9,22 @@ import com.example.employee.pojo.User;
 public interface UserService  {
 
 
+    /**
+     * 创建用户
+     * @param userName
+     * @param fullName
+     * @param userPassword
+     * @param userConfirmPassword
+     * @param userEmail
+     * @param userPhone
+     * @return
+     */
     User createUser(String userName,String fullName,String userPassword,String userConfirmPassword,String userEmail,String userPhone);
 
-
+    /**
+     * 根据用户名查询用户
+     * @param userName
+     * @return
+     */
+    User queryUserByUserName(String userName);
 }
