@@ -19,7 +19,7 @@ public interface UserService  {
      * @param userPhone
      * @return
      */
-    User createUser(String userName,String fullName,String userPassword,String userConfirmPassword,String userEmail,String userPhone);
+    User createUser(String userName,String fullName,String userPassword,String userConfirmPassword,String userEmail,Long userPhone);
 
     /**
      * 根据用户名查询用户

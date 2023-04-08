@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @date 2023/3/27 16:26
  */
 @Data
-@TableName()
+@TableName("user")
 public class User {
 
     /**
@@ -41,7 +41,7 @@ public class User {
     /**
      * 用户电话
      */
-    private String userPhone;
+    private Long userPhone;
 
     /**
      * 用户创建时间

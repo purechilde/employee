@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
                            String userPassword,
                            String userConfirmPassword,
                            String userEmail,
-                           String userPhone) {
+                           Long userPhone) {
         User user = new User();
         LocalDateTime now = LocalDateTime.now();
         user.setUserName(userName);
