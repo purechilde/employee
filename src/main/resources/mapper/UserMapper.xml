@@ -4,8 +4,13 @@
     <sql id="baseSql">
         user_id, user_name, full_name, user_password, user_email, user_phone, create_time, update_time
     </sql>
-    <select id="queryUserByUserNameAccurately" resultType="com.example.employee.pojo.User">
-
+    <select id="listAllUser" resultType="com.example.employee.pojo.User">
+        select
+            *
+        from user
     </select>
 
+    <select id="selectUserById" resultType="com.example.employee.pojo.User">
+        select * from user where user_id = #{userId}
+    </select>
 </mapper>

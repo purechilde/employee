@@ -4,6 +4,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.employee.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+
+import java.util.List;
 
 /**
  * @author lujiajun
@@ -14,5 +18,12 @@ public interface UserMapper extends BaseMapper<User> {
 
     User queryUserByUserNameAccurately(@Param("userName") String userName);
 
+    List<User> listAllUser();
 
+    @Cacheable(sync = true)
+    User selectUserById(int userId);
+
+    User selectUserByName(String userName);
+    @CacheEvict(key = "#p0.id")
+    int updateById(@Param("et") User user);
 }

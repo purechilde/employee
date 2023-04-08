@@ -22,6 +22,10 @@ public enum UserErrorCode implements ErrorCode {
 
     USER_STATUS_ERROR(30008, "用户状态异常"),
 
+    USER_EXIST(30010,"用户已存在"),
+
+    USER_NOT_EXIST(30011,"用户不存在"),
+
     FORM_REPEAT_SUBMIT(30009, "请勿重复提交");
 
     private final int code;
