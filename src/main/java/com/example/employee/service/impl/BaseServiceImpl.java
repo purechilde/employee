@@ -1,5 +1,6 @@
 package com.example.employee.service.impl;
 
+import com.example.employee.pojo.User;
 import com.example.employee.service.BaseService;
 
 /**
@@ -8,4 +9,13 @@ import com.example.employee.service.BaseService;
  */
 public class BaseServiceImpl implements BaseService {
 
+    @Override
+    public boolean isAdmin(User user) {
+        return false;
+    }
+
+    @Override
+    public boolean isNotAdmin(User user) {
+        return false;
+    }
 }
