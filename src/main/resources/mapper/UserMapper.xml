@@ -13,4 +13,5 @@
     <select id="selectUserById" resultType="com.example.employee.pojo.User">
         select * from user where user_id = #{userId}
     </select>
+
 </mapper>

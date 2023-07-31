@@ -25,13 +25,6 @@ public interface UserService  {
     Result<User> createUser(String userName,String fullName,String userPassword,String userEmail,Long userPhone);
 
     /**
-     * 根据用户名查询用户
-     * @param userName
-     * @return
-     */
-    User queryUserByUserName(String userName);
-
-    /**
      * 返回所有用户
      * @return
      */
@@ -47,5 +40,6 @@ public interface UserService  {
      */
     Result<User> updateUser(Integer userId,String userName,String fullName,String userEmail,Long userPhone);
 
+    Result deleteUser(Integer userId);
 
 }

@@ -16,14 +16,12 @@ import java.util.List;
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 
-    User queryUserByUserNameAccurately(@Param("userName") String userName);
-
     List<User> listAllUser();
 
     @Cacheable(sync = true)
     User selectUserById(int userId);
 
-    User selectUserByName(String userName);
     @CacheEvict(key = "#p0.id")
     int updateById(@Param("et") User user);
+
 }

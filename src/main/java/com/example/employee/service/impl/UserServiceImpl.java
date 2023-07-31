@@ -52,11 +52,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User queryUserByUserName(String userName) {
-        return userMapper.queryUserByUserNameAccurately(userName);
-    }
-
-    @Override
     public Result<List<User>> queryAllUser() {
         List<User> list = userMapper.listAllUser();
         return Result.ok(list);
@@ -82,6 +77,11 @@ public class UserServiceImpl implements UserService {
         return Result.ok(user);
     }
 
+    @Override
+    public Result deleteUser(Integer userId) {
+        userMapper.deleteById(userId);
+        return Result.ok();
+    }
 
 
 }

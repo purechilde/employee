@@ -26,7 +26,6 @@ public class UserController {
         return userService.queryAllUser();
     }
 
-
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.OK)
     public Result createUser(
@@ -49,8 +48,11 @@ public class UserController {
         return userService.updateUser(userId,userName,fullName,userEmail,userPhone);
     }
 
-
-
-
+    @PostMapping(value = "/delete")
+    @ResponseStatus(HttpStatus.OK)
+    public Result deleteUser(
+            @RequestParam(value = "userId", required = false) Integer userId){
+        return userService.deleteUser(userId);
+    }
 
 }
