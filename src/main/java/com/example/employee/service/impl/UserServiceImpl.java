@@ -1,11 +1,9 @@
 package com.example.employee.service.impl;
 
 
-import com.example.employee.code.UserErrorCode;
 import com.example.employee.mapper.UserMapper;
 import com.example.employee.pojo.User;
 import com.example.employee.service.UserService;
-import com.example.employee.utils.EncryptionUtils;
 import com.example.employee.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,27 +26,30 @@ public class UserServiceImpl implements UserService {
      * @param userName
      * @param fullName
      * @param userPassword
+     * @param userConfirmPassword
      * @param userEmail
      * @param userPhone
      * @return
      */
     @Override
-    public Result<User> createUser(String userName,
+    public User createUser(String userName,
                            String fullName,
                            String userPassword,
+                           String userConfirmPassword,
                            String userEmail,
                            Long userPhone) {
         User user = new User();
         LocalDateTime now = LocalDateTime.now();
         user.setUserName(userName);
         user.setFullName(fullName);
-        user.setUserPassword(EncryptionUtils.getMd5(userPassword));
+        if(userPassword.equals(userConfirmPassword))
+            user.setUserPassword(userPassword);
         user.setUserEmail(userEmail);
         user.setUserPhone(userPhone);
         user.setCreateTime(now);
         user.setUpdateTime(now);
         userMapper.insert(user);
-        return Result.ok(user);
+        return user;
     }
 
     @Override
@@ -61,27 +62,6 @@ public class UserServiceImpl implements UserService {
         List<User> list = userMapper.listAllUser();
         return Result.ok(list);
     }
-
-    @Override
-    public Result<User> updateUser(Integer useId,
-                                   String userName,
-                                   String fullName,
-                                   String userEmail,
-                                   Long userPhone) {
-        User user = userMapper.selectUserById(useId);
-        if(user == null){
-            Result.error(UserErrorCode.USER_NOT_EXIST);
-        }
-        user.setUserName(userName);
-        user.setFullName(fullName);
-        user.setUserEmail(userEmail);
-        user.setUserPhone(userPhone);
-        LocalDateTime now = LocalDateTime.now();
-        user.setUpdateTime(now);
-        userMapper.updateById(user);
-        return Result.ok(user);
-    }
-
 
 
 }
