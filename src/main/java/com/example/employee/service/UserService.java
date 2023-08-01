@@ -42,4 +42,5 @@ public interface UserService  {
 
     Result deleteUser(Integer userId);
 
+    Result<User> queryUserByUserName(String userName);
 }

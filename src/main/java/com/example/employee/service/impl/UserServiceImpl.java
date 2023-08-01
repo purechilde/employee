@@ -58,14 +58,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result<User> updateUser(Integer useId,
+    public Result<User> updateUser(Integer userId,
                                    String userName,
                                    String fullName,
                                    String userEmail,
                                    Long userPhone) {
-        User user = userMapper.selectUserById(useId);
+        User user = userMapper.selectUserById(userId);
         if(user == null){
-            Result.error(UserErrorCode.USER_NOT_EXIST);
+           return Result.error(UserErrorCode.USER_NOT_EXIST);
         }
         user.setUserName(userName);
         user.setFullName(fullName);
@@ -79,8 +79,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result deleteUser(Integer userId) {
+        User user = userMapper.selectUserById(userId);
+        if(user == null){
+            return Result.error(UserErrorCode.USER_NOT_EXIST);
+        }
         userMapper.deleteById(userId);
         return Result.ok();
+    }
+
+    @Override
+    public Result<User> queryUserByUserName(String userName) {
+        User user = userMapper.selectUserByUserName(userName);
+        if(user == null){
+            return Result.error(UserErrorCode.USER_NOT_EXIST);
+        }
+        return Result.ok(user);
     }
 
 

@@ -26,6 +26,8 @@ public enum UserErrorCode implements ErrorCode {
 
     USER_NOT_EXIST(30011,"用户不存在"),
 
+    PASSWORD_INCORRECT(30012,"密码不正确！"),
+
     FORM_REPEAT_SUBMIT(30009, "请勿重复提交");
 
     private final int code;

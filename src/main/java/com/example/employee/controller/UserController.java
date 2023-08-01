@@ -1,5 +1,6 @@
 package com.example.employee.controller;
 
+import com.example.employee.code.UserErrorCode;
 import com.example.employee.pojo.User;
 import com.example.employee.service.UserService;
 import com.example.employee.utils.Result;
@@ -48,11 +49,26 @@ public class UserController {
         return userService.updateUser(userId,userName,fullName,userEmail,userPhone);
     }
 
-    @PostMapping(value = "/delete")
+    @DeleteMapping(value = "/delete")
     @ResponseStatus(HttpStatus.OK)
     public Result deleteUser(
             @RequestParam(value = "userId", required = false) Integer userId){
         return userService.deleteUser(userId);
+    }
+
+    @PostMapping(value = "/login")
+    @ResponseStatus(HttpStatus.OK)
+    public Result login(String userName,String userPassword){
+        User user = userService.queryUserByUserName(userName).getData();
+        if(user == null){
+            return Result.error(UserErrorCode.USER_NOT_EXIST);
+        }
+        if (user.getUserPassword().equals(userPassword)){
+            return Result.ok(user);
+        }
+        else{
+            return Result.error(UserErrorCode.PASSWORD_INCORRECT);
+        }
     }
 
 }

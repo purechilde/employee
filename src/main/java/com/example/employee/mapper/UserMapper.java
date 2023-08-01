@@ -24,4 +24,5 @@ public interface UserMapper extends BaseMapper<User> {
     @CacheEvict(key = "#p0.id")
     int updateById(@Param("et") User user);
 
+    User selectUserByUserName(String userName);
 }
