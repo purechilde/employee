@@ -21,13 +21,29 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 查询所有用户
+     */
     @GetMapping(value = "/list")
     @ResponseStatus(HttpStatus.OK)
     public Result<List<User>> queryAllUser(){
         return userService.queryAllUser();
     }
 
-    @PostMapping(value = "/create")
+    /**
+     *
+     * 模糊查询用户
+     */
+    @GetMapping(value = "/list-user")
+    @ResponseStatus(HttpStatus.OK)
+    public Result<List<User>>FuzzyQueryUserByUserName(String userName){
+        return userService.fuzzyQueryUserByUserName(userName);
+    }
+
+    /**
+     * 新增用户
+     */
+    @PostMapping(value = "/insert")
     @ResponseStatus(HttpStatus.OK)
     public Result createUser(
                              @RequestParam(value = "userName", required = false) String userName,
@@ -38,6 +54,9 @@ public class UserController {
         return userService.createUser(userName,fullName,userPassword,userEmail,userPhone);
     }
 
+    /**
+     * 更新用户信息
+     */
     @PostMapping(value = "/update")
     @ResponseStatus(HttpStatus.OK)
     public Result updateUser(
@@ -49,6 +68,9 @@ public class UserController {
         return userService.updateUser(userId,userName,fullName,userEmail,userPhone);
     }
 
+    /**
+     * 删除用户
+     */
     @DeleteMapping(value = "/delete")
     @ResponseStatus(HttpStatus.OK)
     public Result deleteUser(
@@ -56,6 +78,9 @@ public class UserController {
         return userService.deleteUser(userId);
     }
 
+    /**
+     * 用户登录
+     */
     @PostMapping(value = "/login")
     @ResponseStatus(HttpStatus.OK)
     public Result login(String userName,String userPassword){

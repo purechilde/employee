@@ -26,7 +26,6 @@ public interface UserService  {
 
     /**
      * 返回所有用户
-     * @return
      */
     Result<List<User>> queryAllUser();
 
@@ -36,11 +35,25 @@ public interface UserService  {
      * @param fullName
      * @param userEmail
      * @param userPhone
-     * @return
      */
     Result<User> updateUser(Integer userId,String userName,String fullName,String userEmail,Long userPhone);
 
+    /**
+     * 删除用户
+     * @param userId
+     */
     Result deleteUser(Integer userId);
 
+    /**
+     * 根据用户名查询用户
+     * @param userName
+     */
     Result<User> queryUserByUserName(String userName);
+
+    /**
+     * 根据用户名模糊查询用户
+     * @param userName
+     */
+    Result<List<User>> fuzzyQueryUserByUserName(String userName);
+
 }

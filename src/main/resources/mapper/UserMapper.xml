@@ -17,4 +17,8 @@
     <select id="selectUserByUserName" resultType="com.example.employee.pojo.User">
         select * from user where user_name = #{userName}
     </select>
+
+    <select id="FuzzyQueryUserByUserName" resultType="com.example.employee.pojo.User">
+        select * from user where user_name like concat('%',#{userName},'%')
+    </select>
 </mapper>

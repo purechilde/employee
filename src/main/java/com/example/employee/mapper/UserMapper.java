@@ -25,4 +25,6 @@ public interface UserMapper extends BaseMapper<User> {
     int updateById(@Param("et") User user);
 
     User selectUserByUserName(String userName);
+
+    List<User> FuzzyQueryUserByUserName(String userName);
 }

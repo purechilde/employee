@@ -30,7 +30,6 @@ public class UserServiceImpl implements UserService {
      * @param userPassword
      * @param userEmail
      * @param userPhone
-     * @return
      */
     @Override
     public Result<User> createUser(String userName,
@@ -91,6 +90,15 @@ public class UserServiceImpl implements UserService {
     public Result<User> queryUserByUserName(String userName) {
         User user = userMapper.selectUserByUserName(userName);
         if(user == null){
+            return Result.error(UserErrorCode.USER_NOT_EXIST);
+        }
+        return Result.ok(user);
+    }
+
+    @Override
+    public Result<List<User>> fuzzyQueryUserByUserName(String userName) {
+        List<User> user = userMapper.FuzzyQueryUserByUserName(userName);
+        if(user.isEmpty()){
             return Result.error(UserErrorCode.USER_NOT_EXIST);
         }
         return Result.ok(user);
